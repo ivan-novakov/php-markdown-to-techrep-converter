@@ -1,0 +1,14 @@
+{
+    "name" : "ivan-novakov/php-markdown2techrep",
+
+    "require" : {
+        "symfony/console" : "~2.4",
+        "zendframework/zend-servicemanager" : "~2"
+    },
+
+    "autoload" : {
+        "psr-0" : {
+            "InoMdReport\\" : "src/"
+        }
+    }
+}
