@@ -20,11 +20,19 @@ class Techrep extends Base
 
     const TAG_H3 = 'h3';
 
+    const TAG_A = 'a';
+
     const TAG_PRE = 'pre';
 
     const TAG_EM = 'em';
 
     const TAG_TT = 'tt';
+
+    const TAG_OL = 'ol';
+
+    const TAG_UL = 'ul';
+
+    const TAG_LI = 'li';
 
     const TAG_STRONG = 'strong';
 
@@ -143,6 +151,25 @@ class Techrep extends Base
     }
 
 
+    /**
+     * Renders a link.
+     * 
+     * @param string $link
+     * @param string $title
+     * @param string $content
+     */
+    public function link($link, $title = '', $content = '')
+    {
+        if ('' === $content) {
+            $content = $link;
+        }
+        
+        return $this->renderTag(self::TAG_A, $content, array(
+            'href' => $link
+        ));
+    }
+
+
     public function image($link, $title = '', $altText = '')
     {
         $format = strtoupper(substr($link, strrpos($link, '.') + 1));
@@ -159,6 +186,29 @@ class Techrep extends Base
         ));
         
         return $figure;
+    }
+
+
+    public function listBox($contents, $listType)
+    {
+        $tag = null;
+        switch ($listType) {
+            case 9:
+                $tag = self::TAG_OL;
+                break;
+            case 8:
+            default:
+                $tag = self::TAG_UL;
+                break;
+        }
+        
+        return $this->renderTag($tag, $contents);
+    }
+
+
+    public function listItem($text, $listType)
+    {
+        return $this->renderTag(self::TAG_LI, $text);
     }
     
     /*
